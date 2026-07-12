@@ -1,8 +1,8 @@
 #ifndef SOCKET_H
 #define SOCKET_H
 
-#include <sys/types.h>
 #include <sys/socket.h>
+#include <sys/types.h>
 
 class Socket
 {
@@ -16,6 +16,9 @@ public:
 
   Socket(const Socket&) = delete;
   Socket& operator=(const Socket&) = delete;
+
+  Socket(Socket&& other);
+  Socket& operator=(Socket&& other);
 
   ssize_t send(const void* buf, size_t buf_size);
   ssize_t receive(void* buf, size_t buf_size);

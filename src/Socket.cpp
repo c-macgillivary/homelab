@@ -12,6 +12,25 @@ Socket::~Socket()
   close();
 }
 
+Socket::Socket(Socket&& other) :
+  _fd(other._fd)
+{
+  other._fd = -1;
+}
+
+Socket& Socket::operator=(Socket&& other)
+{
+  if (&other != this)
+  {
+    close();
+
+    _fd = other._fd;
+    other._fd = -1;
+  }
+
+  return *this;
+}
+
 ssize_t Socket::send(const void* buf, size_t buf_size)
 {
   return ::send(_fd, buf, buf_size, 0);
