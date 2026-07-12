@@ -15,6 +15,12 @@ private:
 public:
   Server();
 
+  Server(const Server&) = delete;
+  Server& operator=(const Server&) = delete;
+
+  Server(Server&& other);
+  Server& operator=(Server&& other);
+
   void start();
 
   void stop();
