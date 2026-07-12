@@ -1,10 +1,11 @@
 #ifndef SERVER_H
 #define SERVER_H
 
+#include "Socket.h"
 class Server
 {
 private:
-  int _socket_fd = -1;
+  Socket _socket;
   bool _running = false;
 
 public:
