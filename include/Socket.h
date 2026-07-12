@@ -28,6 +28,11 @@ public:
   int accept();
 
   void close();
+
+  bool isOpen()
+  {
+    return _fd == -1 ? false : true;
+  }
 };
 
 #endif
