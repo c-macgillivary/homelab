@@ -1,0 +1,32 @@
+#include "Socket.h"
+#include <unistd.h>
+#include <sys/socket.h>
+
+Socket::Socket(int fd) :
+  _fd(fd)
+{
+}
+
+Socket::~Socket()
+{
+  close();
+}
+
+ssize_t Socket::send(const void* buf, size_t buf_size)
+{
+  return ::send(_fd, buf, buf_size, 0);
+}
+
+ssize_t Socket::receive(void* buf, size_t buf_size)
+{
+  return recv(_fd, buf, buf_size, 0);
+}
+
+void Socket::close()
+{
+  if (_fd != -1)
+  {
+    ::close(_fd);
+    _fd = -1;
+  }
+}
