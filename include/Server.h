@@ -9,24 +9,12 @@ private:
   bool _running;
 
 public:
-  /**
-   * Constructor for Server
-   */
   Server(unsigned short port);
 
-  /**
-   * Destructor for Server
-   */
   ~Server();
 
-  /**
-   * Start the server
-   */
   void start();
 
-  /**
-   * Stop the server
-   */
   void stop();
 };
 
