@@ -69,6 +69,9 @@ void Server::start()
     return;
   }
 
+  std::cout << "HomeLab started successfully\n----------------------------------------\n";
+  std::cout << "Waiting for client to connect\n\n";
+
   int client_fd = _socket.accept();
   if (client_fd == -1)
     // Add error handling for failing accepts
