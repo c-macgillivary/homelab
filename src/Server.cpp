@@ -71,7 +71,9 @@ void Server::start()
 
   int client_fd = _socket.accept();
   if (client_fd == -1)
+    // Add error handling for failing accepts
     return;
+
   _client = std::make_unique<Client>(client_fd);
 
   _client->serve();
