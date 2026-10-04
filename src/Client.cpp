@@ -25,16 +25,9 @@ void Client::serve()
         running = false;
       else
       {
-        std::stringstream ss;
-        ss << input;
-
-        std::string command = "";
-        getline(ss, command, ' ');
-
-        std::vector<std::string> args;
-
-        while (getline(ss, input, ' '))
-          args.push_back(input);
+        size_t pos = input.find(' ');
+        std::string command = input.substr(0, pos);
+        std::string args = input.substr(pos + 1);
 
         if (auto cmd = CommandRegistry::parse(command))
           cmd->execute(args, _socket);

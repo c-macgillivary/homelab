@@ -4,7 +4,6 @@
 #include "Command.h"
 #include <memory>
 #include <string>
-#include <vector>
 
 class EchoCommand : public Command
 {
@@ -12,7 +11,7 @@ private:
   static bool _registered;
 
 public:
-  int execute(const std::vector<std::string>& args, Socket& client) override;
+  int execute(std::string& args, Socket& client) override;
 
   static std::unique_ptr<Command> createEchoCommand()
   {
