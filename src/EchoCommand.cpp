@@ -6,7 +6,10 @@ bool EchoCommand::_registered = CommandRegistry::registerCommand("echo", EchoCom
 int EchoCommand::execute(const std::vector<std::string>& args, Socket& client)
 {
   if (args.size() > 0)
-    client.send(args[0].c_str(), args[0].length());
+  {
+    std::string s = args[0] + "\n";
+    client.send(s.data(), s.length());
+  }
 
   return 0;
 }
