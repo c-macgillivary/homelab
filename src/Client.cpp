@@ -37,7 +37,7 @@ void Client::serve()
           args.push_back(input);
 
         if (auto cmd = CommandRegistry::parse(command))
-          cmd->execute(args);
+          cmd->execute(args, _socket);
         else
         {
           std::cout << "Invalid command \"" << command << "\"\nValid commands are:" << std::endl;
