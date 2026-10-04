@@ -40,8 +40,8 @@ void Client::serve()
           cmd->execute(args, _socket);
         else
         {
-          std::cout << "Invalid command \"" << command << "\"\nValid commands are:" << std::endl;
-          CommandRegistry::printCommandsList();
+          std::string errorMessage = "Invalid command \"" + command + "\"\nValid commands are:\n" + CommandRegistry::getCommandsList();
+          _socket.send(errorMessage.data(), errorMessage.length());
         }
       }
     }

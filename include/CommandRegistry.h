@@ -25,7 +25,7 @@ public:
 
   static std::unique_ptr<Command> parse(std::string);
 
-  static void printCommandsList();
+  static std::string getCommandsList();
 };
 
 #endif

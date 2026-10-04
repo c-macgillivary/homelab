@@ -19,10 +19,12 @@ std::unique_ptr<Command> CommandRegistry::parse(std::string command)
   return nullptr;
 }
 
-void CommandRegistry::printCommandsList()
+std::string CommandRegistry::getCommandsList()
 {
+  std::string s = "";
   for (const auto& [key, value] : _map)
-  {
-    std::cout << "\tkey" << std::endl;
-  }
+    s += "\t" + key + "\n";
+
+  s+= "\n";
+  return s;
 }
