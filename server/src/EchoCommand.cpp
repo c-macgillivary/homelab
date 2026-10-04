@@ -5,8 +5,7 @@ bool EchoCommand::_registered = CommandRegistry::registerCommand("echo", EchoCom
 
 int EchoCommand::execute(std::string& args, Socket& client)
 {
-  args = "print " + args + "\n";
-  client.send(args.data(), args.length());
+  client.send("print " + args + "\n");
 
   return 0;
 }

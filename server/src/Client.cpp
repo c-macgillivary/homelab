@@ -15,12 +15,11 @@ void Client::serve()
   bool running = true;
   while (running)
   {
-    char buf[1024] = { 0 };
-    ssize_t bytes = _socket.receive(buf, sizeof(buf) - 1); // -1 because a \0 must be left at the end to terminate the string
+    std::string input = "";
+    ssize_t bytes = _socket.receive(input, 1024);
 
     if (bytes > 0) // No exceptions
     {
-      std::string input = buf;
       if (input == "exit")
         running = false;
       else
@@ -34,7 +33,7 @@ void Client::serve()
         else
         {
           std::string errorMessage = "Invalid command \"" + command + "\"\nValid commands are:\n" + CommandRegistry::getCommandsList();
-          _socket.send(errorMessage.data(), errorMessage.length());
+          _socket.send(errorMessage);
         }
       }
     }

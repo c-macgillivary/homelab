@@ -1,6 +1,7 @@
 #ifndef SOCKET_H
 #define SOCKET_H
 
+#include <string>
 #include <sys/socket.h>
 #include <sys/types.h>
 
@@ -20,8 +21,8 @@ public:
   Socket(Socket&& other);
   Socket& operator=(Socket&& other);
 
-  ssize_t send(const void* buf, size_t buf_size);
-  ssize_t receive(void* buf, size_t buf_size);
+  ssize_t send(const std::string& msg);
+  ssize_t receive(std::string& msg, size_t length);
 
   int bind(const struct sockaddr* addr, socklen_t addrlen);
   int listen(int backlog);

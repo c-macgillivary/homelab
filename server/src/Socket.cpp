@@ -31,14 +31,18 @@ Socket& Socket::operator=(Socket&& other)
   return *this;
 }
 
-ssize_t Socket::send(const void* buf, size_t buf_size)
+ssize_t Socket::send(const std::string& msg)
 {
-  return ::send(_fd, buf, buf_size, 0);
+  return ::send(_fd, msg.data(), msg.length(), 0);
 }
 
-ssize_t Socket::receive(void* buf, size_t buf_size)
+ssize_t Socket::receive(std::string& msg, size_t length)
 {
-  return recv(_fd, buf, buf_size, 0);
+  msg.resize(length);
+  ssize_t recvd = recv(_fd, msg.data(), msg.size(), 0);
+  if (recvd >= 0)
+    msg.resize(recvd);
+  return recvd;
 }
 
 int Socket::bind(const struct sockaddr* addr, socklen_t addrlen)
