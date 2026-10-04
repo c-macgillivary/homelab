@@ -77,6 +77,8 @@ void Server::start()
     // Add error handling for failing accepts
     return;
 
+  std::cout << "Client connected\n";
+
   _client = std::make_unique<Client>(client_fd);
 
   _client->serve();
