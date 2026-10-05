@@ -1,20 +1,17 @@
 #include <CommandRegistry.h>
-#include <iostream>
-
-std::unordered_map<std::string, CommandRegistry::Creator> CommandRegistry::_map;
 
 int CommandRegistry::registerCommand(std::string name, Creator creator)
 {
-  if (_map.contains(name))
+  if (map().contains(name))
     return -1;
-  _map[name] = creator;
+  map()[name] = creator;
   return 0;
 }
 
 std::unique_ptr<Command> CommandRegistry::parse(std::string command)
 {
-  if (_map.contains(command))
-      return _map[command]();
+  if (map().contains(command))
+    return map()[command]();
 
   return nullptr;
 }
@@ -22,9 +19,15 @@ std::unique_ptr<Command> CommandRegistry::parse(std::string command)
 std::string CommandRegistry::getCommandsList()
 {
   std::string s = "";
-  for (const auto& [key, value] : _map)
+  for (const auto& [key, value] : map())
     s += "\t" + key + "\n";
 
-  s+= "\n";
+  s += "\n";
   return s;
+}
+
+std::unordered_map<std::string, CommandRegistry::Creator> CommandRegistry::map()
+{
+  static std::unordered_map<std::string, Creator> map;
+  return map;
 }

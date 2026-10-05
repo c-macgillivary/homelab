@@ -11,10 +11,6 @@ class CommandRegistry
 public:
   using Creator = std::unique_ptr<Command> (*)();
 
-private:
-  static std::unordered_map<std::string, Creator> _map;
-
-public:
   CommandRegistry() = default;
   CommandRegistry(const CommandRegistry&) = delete;
   CommandRegistry(const CommandRegistry&&) = delete;
@@ -26,6 +22,8 @@ public:
   static std::unique_ptr<Command> parse(std::string);
 
   static std::string getCommandsList();
+
+  static std::unordered_map<std::string, Creator> map();
 };
 
 #endif
