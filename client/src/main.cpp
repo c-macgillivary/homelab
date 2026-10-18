@@ -23,6 +23,8 @@ int main()
     std::cout << "Send to server: ";
     getline(std::cin, str);
     send(clientSocket, str.c_str(), str.length(), 0);
+    if (str == "exit")
+      break;
 
     char buf[1024] = { 0 };
     int bytes = recv(clientSocket, buf, sizeof(buf), 0);
