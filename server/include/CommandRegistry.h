@@ -23,7 +23,7 @@ public:
 
   static std::string getCommandsList();
 
-  static std::unordered_map<std::string, Creator> map();
+  static std::unordered_map<std::string, Creator>& map();
 };
 
 #endif

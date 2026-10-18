@@ -26,7 +26,7 @@ std::string CommandRegistry::getCommandsList()
   return s;
 }
 
-std::unordered_map<std::string, CommandRegistry::Creator> CommandRegistry::map()
+std::unordered_map<std::string, CommandRegistry::Creator>& CommandRegistry::map()
 {
   static std::unordered_map<std::string, Creator> map;
   return map;
