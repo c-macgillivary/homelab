@@ -2,6 +2,7 @@
 #include <netinet/in.h>
 #include <string>
 #include <sys/socket.h>
+#include <arpa/inet.h>
 
 int main()
 {
@@ -9,10 +10,10 @@ int main()
 
   int clientSocket = socket(AF_INET, SOCK_STREAM, 0);
 
-  sockaddr_in serverAddress;
+  sockaddr_in serverAddress{};
   serverAddress.sin_family = AF_INET;
   serverAddress.sin_port = htons(8080);
-  serverAddress.sin_addr.s_addr = INADDR_ANY;
+  inet_pton(AF_INET, "100.71.123.86", &serverAddress.sin_addr);
 
   connect(clientSocket, reinterpret_cast<sockaddr*>(&serverAddress), sizeof(serverAddress));
 
