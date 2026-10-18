@@ -21,7 +21,7 @@ sudo useradd --system --create-home --user-group server
 ## Installing
 - Clone the repository:
 ``` bash
-git clone https://github.com/c-macgillivary/homelab-server.git
+git clone https://github.com/c-macgillivary/homelab.git
 ```
 - Enter the repo:
 ``` bash
