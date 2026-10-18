@@ -9,5 +9,6 @@ cmake --preset default
 cmake --build build --preset release --target server
 sudo cmake --install build --config release
 
-# Restart the server service
+# Enable and (re)start the server service
+sudo systmectl enable server
 sudo systemctl restart server
