@@ -1,0 +1,18 @@
+[Unit]
+Description=Homelab Server
+After=network.target
+
+[Service]
+Type=simple
+User=server
+Group=server
+ExecStart=/usr/local/bin/server
+Restart=on-failure
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=read-only
+PrivateTmp=yes
+
+[Install]
+WantedBy=multi-user.target
+
