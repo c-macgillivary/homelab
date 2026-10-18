@@ -70,18 +70,27 @@ void Server::start()
   }
 
   std::cout << "HomeLab started successfully\n----------------------------------------\n";
-  std::cout << "Waiting for client to connect\n\n";
 
-  int client_fd = _socket.accept();
-  if (client_fd == -1)
-    // Add error handling for failing accepts
-    return;
+  // TODO: add member variable to end connection loop
+  // Wait for a client, serve them, then wait for another ad infinitum
+  while (true)
+  {
+    std::cout << "Waiting for client to connect\n\n";
 
-  std::cout << "Client connected\n";
+    int client_fd = _socket.accept();
+    if (client_fd == -1)
+      // Add error handling for failing accepts
+      return;
 
-  _client = std::make_unique<Client>(client_fd);
+    std::cout << "Client connected\n";
 
-  _client->serve();
+    _client = std::make_unique<Client>(client_fd);
+
+    _client->serve();
+
+    std::cout << "Client disconnected\n"
+              << std::endl;
+  }
 }
 
 void Server::stop()
