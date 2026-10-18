@@ -1,26 +1,21 @@
-cmake_minimum_required(VERSION 3.24)
-
-set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-
-get_filename_component(PROJECT_ROOT_DIR ${CMAKE_CURRENT_SOURCE_DIR} ABSOLUTE)
-get_filename_component(PROJECT_NAME_RAW ${PROJECT_ROOT_DIR} NAME)
-string(REPLACE " " "_" PROJECT_NAME_CLEAN ${PROJECT_NAME_RAW})
-
-project(${PROJECT_NAME_CLEAN})
-
-set(CMAKE_CXX_STANDARD 26)
-
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin/$<LOWER_CASE:$<CONFIG>>)
-
-aux_source_directory(${PROJECT_ROOT_DIR}/src PROJECT_SOURCE_FILES)
-
-add_executable(${PROJECT_NAME_CLEAN} 
-    ${PROJECT_SOURCE_FILES}
+add_executable(server
+  src/main.cpp
+  src/Server.cpp
+  src/Client.cpp
+  src/Socket.cpp
+  src/CommandRegistry.cpp
+  src/EchoCommand.cpp
 )
 
-target_include_directories(${PROJECT_NAME_CLEAN}
+set_target_properties(server PROPERTIES
+  CXX_STANDARD 26
+  CXX_STANDARD_REQUIRED ON
+  RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin/$<LOWER_CASE:$<CONFIG>>
+)
+
+target_include_directories(server
   PRIVATE
-  $<BUILD_INTERFACE:${PROJECT_ROOT_DIR}/include/>
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/
 )
 
-install(TARGETS ${PROJECT_NAME_CLEAN} DESTINATION bin)
+install(TARGETS server DESTINATION bin)
