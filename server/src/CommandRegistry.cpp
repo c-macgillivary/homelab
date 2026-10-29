@@ -18,7 +18,7 @@ std::unique_ptr<Command> CommandRegistry::parse(std::string command)
 
 std::string CommandRegistry::getCommandsList()
 {
-  std::string s = "";
+  std::string s = "\texit\n";
   for (const auto& [key, value] : map())
     s += "\t" + key + "\n";
 
