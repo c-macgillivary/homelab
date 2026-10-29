@@ -4,16 +4,19 @@
 #include <sys/socket.h>
 #include <arpa/inet.h>
 
-int main()
+int main(int argc, char** argv)
 {
   system("clear");
 
   int clientSocket = socket(AF_INET, SOCK_STREAM, 0);
 
+  bool givenServerAddress = argc >= 2;
+  std::string serverAddressStr = givenServerAddress ? argv[1] : "127.0.0.1";
+
   sockaddr_in serverAddress{};
   serverAddress.sin_family = AF_INET;
   serverAddress.sin_port = htons(8080);
-  inet_pton(AF_INET, "100.71.123.86", &serverAddress.sin_addr);
+  inet_pton(AF_INET, serverAddressStr.data(), &serverAddress.sin_addr);
 
   connect(clientSocket, reinterpret_cast<sockaddr*>(&serverAddress), sizeof(serverAddress));
 
