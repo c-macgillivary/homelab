@@ -6,3 +6,4 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/server)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/client)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/common)
