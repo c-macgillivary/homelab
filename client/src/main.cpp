@@ -19,7 +19,12 @@ int main(int argc, char** argv)
   serverAddress.sin_port = htons(8080);
   inet_pton(AF_INET, serverAddressStr.data(), &serverAddress.sin_addr);
 
-  connect(clientSocket, reinterpret_cast<sockaddr*>(&serverAddress), sizeof(serverAddress));
+  int code = connect(clientSocket, reinterpret_cast<sockaddr*>(&serverAddress), sizeof(serverAddress));
+  if (code == -1)
+  {
+    perror("Error connecting to HomeLab");
+    return code;
+  }
 
   std::string str = "";
   while (true)
