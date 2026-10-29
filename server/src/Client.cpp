@@ -16,10 +16,12 @@ void Client::serve()
   while (running)
   {
     std::string input = "";
+    std::cout << "Waiting for client command" << std::endl;
     ssize_t bytes = _socket.receive(input, 1024);
 
     if (bytes > 0) // No exceptions
     {
+      std::cout << "Recieved command \"" << input << "\" from client" << std::endl;
       if (input == "exit")
         running = false;
       else

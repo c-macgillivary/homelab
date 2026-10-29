@@ -75,7 +75,7 @@ void Server::start()
   // Wait for a client, serve them, then wait for another ad infinitum
   while (true)
   {
-    std::cout << "Waiting for client to connect\n\n";
+    std::cout << "Waiting for client to connect\n";
 
     int client_fd = _socket.accept();
     if (client_fd == -1)
