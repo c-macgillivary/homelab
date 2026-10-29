@@ -1,8 +1,9 @@
+#include <arpa/inet.h>
 #include <iostream>
 #include <netinet/in.h>
 #include <string>
+#include <string_view>
 #include <sys/socket.h>
-#include <arpa/inet.h>
 
 int main(int argc, char** argv)
 {
@@ -33,7 +34,18 @@ int main(int argc, char** argv)
     int bytes = recv(clientSocket, buf, sizeof(buf), 0);
 
     if (bytes > 0)
-      std::cout << "Received from server: \"" << buf << "\"" << std::endl;
+    {
+      std::string_view sv = buf;
+      size_t spacePos = sv.find(' ');
+
+      std::string_view command = sv.substr(0, spacePos);
+      std::string_view rest = (spacePos == std::string_view::npos) ? "" : sv.substr(spacePos + 1);
+
+      if (command == "print")
+      {
+        std::cout << rest;
+      }
+    }
   }
 
   return 0;
