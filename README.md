@@ -27,11 +27,7 @@ git clone https://github.com/c-macgillivary/homelab.git
 ``` bash
 cd homelab-server
 ```
-- Copy the service file to `/etc/systemd/system`:
+- Install the service and compile the binary
 ``` bash
-sudo cp deploy/server.service /etc/systemd/system
-```
-- Run `deploy.sh` to compile and install the binary, then enable and (re)start the service:
-``` bash
-./deploy/deploy.sh
+make deploy
 ```
