@@ -7,18 +7,19 @@ Uses TCP sockets to connect devices over WAN
 - It may or may not work on other Linux distributions
     - You are welcome to make a pull request to add compatibility for another distribution
 # Install Instructions
-## Build Prerequisites
+## Prerequisites
+### Build
 - GCC or Clang with C++26 support
 - CMake version 3.24 or newer installed
 - Ninja build generator installed
 - GNU Make
-## Deployment Prerequisties
+### Deployment
 - Systemd enabled and running
 - `sudo` privileges
 - Have a linux user and group named `server`
   - `server` should not have sudo privileges
 
-### Configuring Prerequisites
+## Configuring Prerequisites
 ```bash
 sudo pacman -S cmake ninja
 sudo useradd --system --create-home --user-group server
