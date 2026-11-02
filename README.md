@@ -24,7 +24,7 @@ Uses TCP sockets to connect devices over WAN
 sudo pacman -S cmake ninja clang make
 sudo useradd --system --create-home --user-group server
 ```
-- *NOTE*: configuring `systemd` is the user's responsibility
+- **NOTE**: configuring `systemd` is the user's responsibility
 ## Installing
 - Clone the repository:
 ``` bash
