@@ -20,8 +20,9 @@ Uses TCP sockets to connect devices over WAN
   - `server` should not have sudo privileges
 
 ## Configuring Prerequisites
+- configuring `systemd` is the user's responsibility
 ```bash
-sudo pacman -S cmake ninja
+sudo pacman -S cmake ninja clang make
 sudo useradd --system --create-home --user-group server
 ```
 ## Installing
