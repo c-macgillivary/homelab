@@ -26,13 +26,10 @@ sudo useradd --system --create-home --user-group server
 ```
 - **NOTE**: configuring `systemd` is the user's responsibility
 ## Installing
-- Clone the repository:
+- Clone and enter the repository:
 ``` bash
 git clone https://github.com/c-macgillivary/homelab.git
-```
-- Enter the repo:
-``` bash
-cd homelab-server
+cd homelab
 ```
 - Install the service and compile the binary
 ``` bash
