@@ -9,10 +9,11 @@ Uses TCP sockets to connect devices over WAN
 # Install Instructions
 ## Prerequisites
 ### Build
-- GCC or Clang with C++26 support
-- CMake version 3.24 or newer installed
-- Ninja build generator installed
-- GNU Make
+- Have the following installed:
+    - GCC or Clang with C++26 support
+    - CMake version 3.24 or newer
+    - Ninja build generator
+    - GNU Make
 ### Deployment
 - Systemd enabled and running
 - `sudo` privileges
