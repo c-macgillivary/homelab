@@ -1,0 +1,41 @@
+.PHONY: all configure dserver dclient rserver rclient debug release deploy clean
+
+all: debug release
+
+configure: build/.configured
+
+build/.configured: CMakeLists.txt CMakePresets.json
+	cmake --preset default
+	@touch $@
+
+dserver: configure
+	cmake --build --preset debug --target server
+
+dclient: configure
+	cmake --build --preset debug --target client
+
+rserver: configure
+	cmake --build --preset release --target server
+
+rclient: configure
+	cmake --build --preset release --target client
+
+debug: dserver dclient
+
+release: rserver rclient
+
+SERVICE_FILE = deploy/server.service
+SYSTEMD_FILE = /etc/systemd/system/server.service
+
+deploy: rserver
+	@if ! cmp -s $(SERVICE_FILE) $(SYSTEMD_FILE); then \
+		echo "Updating systemd service file..."; \
+		sudo cp $(SERVICE_FILE) $(SYSTEMD_FILE); \
+		sudo systemctl daemon-reload; \
+	fi
+	sudo systemctl enable server
+	sudo systemctl restart server
+
+
+clean:
+	rm -rf build/
