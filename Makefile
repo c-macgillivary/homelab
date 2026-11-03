@@ -35,6 +35,7 @@ deploy: rserver
 		sudo cp $(SERVICE_FILE) $(SYSTEMD_FILE); \
 		sudo systemctl daemon-reload; \
 	fi
+	sudo cmake --install build --config release
 	sudo systemctl enable server
 	sudo systemctl restart server
 
