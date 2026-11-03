@@ -4,6 +4,7 @@ add_executable(server
   src/Client.cpp
   src/CommandRegistry.cpp
   src/EchoCommand.cpp
+  src/PingCommand.cpp
 )
 
 set_target_properties(server PROPERTIES
