@@ -1,4 +1,4 @@
-.PHONY: all configure dserver dclient rserver rclient debug release deploy clean
+.PHONY: all configure dserver dclient rserver rclient client server debug release deploy clean
 
 all: debug release
 
@@ -21,6 +21,10 @@ rserver: configure
 
 rclient: configure
 	cmake --build --preset release --target client
+
+client: dclient rclient
+
+server: dserver rserver
 
 debug: dserver dclient
 
