@@ -26,7 +26,6 @@ SERVICE_FILE = deploy/server.service
 SYSTEMD_FILE = /etc/systemd/system/server.service
 
 deploy: pull rserver
-	git pull
 	@if ! cmp -s $(SERVICE_FILE) $(SYSTEMD_FILE); then \
 		echo "Updating systemd service file..."; \
 		sudo cp $(SERVICE_FILE) $(SYSTEMD_FILE); \
