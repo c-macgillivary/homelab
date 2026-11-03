@@ -27,6 +27,7 @@ public:
   int bind(const struct sockaddr* addr, socklen_t addrlen);
   int listen(int backlog);
   int accept();
+  int connect(std::string addrStr);
 
   void close();
 

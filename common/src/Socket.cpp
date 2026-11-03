@@ -1,6 +1,7 @@
 #include "Socket.h"
 #include <sys/socket.h>
 #include <unistd.h>
+#include <arpa/inet.h>
 
 Socket::Socket(int fd) :
   _fd(fd)
@@ -58,6 +59,16 @@ int Socket::listen(int backlog)
 int Socket::accept()
 {
   return ::accept(_fd, nullptr, nullptr);
+}
+
+int Socket::connect(std::string addrStr)
+{
+  sockaddr_in addr{};
+  addr.sin_family = AF_INET;
+  addr.sin_port = htons(8080);
+  inet_pton(AF_INET, addrStr.data(), &addr.sin_addr);
+
+  return ::connect(_fd, reinterpret_cast<sockaddr*>(&addr), sizeof(addr));
 }
 
 void Socket::close()
