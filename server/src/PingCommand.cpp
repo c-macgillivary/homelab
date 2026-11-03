@@ -1,7 +1,7 @@
 #include "PingCommand.h"
 #include "CommandRegistry.h"
 
-bool PingCommand::_registered = CommandRegistry::registerCommand("echo", PingCommand::createPingCommand);
+bool PingCommand::_registered = CommandRegistry::registerCommand("ping", PingCommand::createPingCommand);
 
 int PingCommand::execute(std::string& args, Socket& client)
 {
