@@ -32,7 +32,7 @@ int Client::connect(std::string addrStr)
     _socket.send(input);
     if (input == "exit")
       break;
-    int bytes = _socket.receive(input, 1000);
+    int bytes = _socket.receive(input);
 
     if (bytes > 0)
     {

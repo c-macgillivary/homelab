@@ -17,7 +17,7 @@ void Client::serve()
   {
     std::string input = "";
     std::cout << "Waiting for client command" << std::endl;
-    ssize_t bytes = _socket.receive(input, 1024);
+    ssize_t bytes = _socket.receive(input);
 
     if (bytes > 0) // No exceptions
     {
