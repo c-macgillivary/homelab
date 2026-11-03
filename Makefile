@@ -4,7 +4,9 @@ all: debug release
 
 configure: build/.configured
 
-build/.configured: CMakeLists.txt CMakePresets.json
+CMAKE_FILES = $(shell find . -name CMakeLists.txt)
+
+build/.configured: $(CMAKE_FILES) CMakePresets.json
 	cmake --preset default
 	@touch $@
 
